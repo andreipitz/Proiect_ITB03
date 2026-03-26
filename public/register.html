@@ -39,6 +39,10 @@
                     <input type="password" id="password" name="password" required />
                 </div>
                 <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required />
+                </div>
+                <div class="form-group">
                     <label for="age">Age</label>
                     <input type="number" id="age" name="age" min="0" required />
                 </div>
@@ -54,6 +58,28 @@
     </footer>
 
     <script>
+        const form = document.querySelector('.form');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+
+        function validatePasswords() {
+            if (passwordInput.value && confirmPasswordInput.value && passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordInput.setCustomValidity("Parolele nu se potrivesc.");
+            } else {
+                confirmPasswordInput.setCustomValidity("");
+            }
+        }
+
+        passwordInput.addEventListener('input', validatePasswords);
+        confirmPasswordInput.addEventListener('input', validatePasswords);
+
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                form.reportValidity();
+            }
+        });
+
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>

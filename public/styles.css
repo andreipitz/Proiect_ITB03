@@ -144,4 +144,6 @@ body {
   font-size: 0.85rem;
   color: #6b7280;
   text-align: center;
+  position: fixed;
+  bottom: 0;
 }

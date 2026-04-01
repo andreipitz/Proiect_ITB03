@@ -1,7 +1,22 @@
 {
-  "dependencies": {
-    "dotenv": "^17.3.1",
-    "express": "^5.2.1",
-    "mysql2": "^3.20.0"
+  "name": "simple-website",
+  "version": "1.0.0",
+  "description": "Simple clean website with registration form saving to MySQL",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test:register:sh": "cypress run --spec \"testCypress/register.cy.js\"",
+    "test:register:ui": "cypress open --e2e --config specPattern=\"testCypress/register.cy.js\"",
+    
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "mysql2": "^3.11.3"
+  },
+  "devDependencies": {
+    "cypress": "^14.5.4",
+    "nodemon": "^3.1.7"
   }
 }

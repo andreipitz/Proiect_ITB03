@@ -1,0 +1,30 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: itb03_app
+    environment:
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/register').then((res) => process.exit(res.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  cypress:
+    image: cypress/included:14.5.4
+    container_name: itb03_cypress
+    working_dir: /e2e
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      CYPRESS_baseUrl: http://app:3000
+    volumes:
+      - ./:/e2e
+    command: cypress run --spec "testCypress/register.cy.js"

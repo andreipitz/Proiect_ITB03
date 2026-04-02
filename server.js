@@ -10,11 +10,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const pool = mysql.createPool({
-  host: process.env.MYSQL_HOST || '127.0.0.1',
+  host: process.env.MYSQL_HOST || 'host.docker.internal',
   port: process.env.MYSQL_PORT || 3306,
   user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASS || '',
-  database: process.env.MYSQL_DB || 'myDB',
+  password: process.env.MYSQL_PASS || 'aichaaba0609',
+  database: process.env.MYSQL_DB || 'ScoalaDB',
 });
 
 function renderPage(res, page, options = {}) {
